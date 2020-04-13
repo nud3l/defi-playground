@@ -11,5 +11,10 @@ setup(
     license='MIT',
     author='Dominik Harz',
     author_email='dominik.harz@gmail.com',
-    packages=['defi-playground'],
+    packages=['playground'],
+    entry_points={
+        'console_scripts': [
+            'playground = playground.__main__:main'
+        ]
+    },
 )

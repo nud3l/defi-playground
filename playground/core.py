@@ -3,8 +3,7 @@ import subprocess
 import io
 import json
 import configparser
-import traceback
-from constants import ACCOUNTS_FILE, CONFIG_FILE
+from playground.constants import ACCOUNTS_FILE, CONFIG_FILE
 
 
 class Blockchain():
@@ -102,26 +101,10 @@ class Blockchain():
         """
         # get infura project details
         infura_project_id = os.environ.get('INFURA_PLAY_ID')
-        infura_key = os.environ.get('INFURA_PLAY_SECRET')
-        if infura_project_id and infura_key:
+        if infura_project_id:
             main_chain = 'https://mainnet.infura.io/v3/{}'.format(infura_project_id)
         else:
             # if infura is not configured, try local host
             main_chain = 'http://localhost:8545'
         
         return main_chain 
-
-def main():
-    try:
-        ganache = Blockchain()
-        ganache.read_output()
-    except KeyboardInterrupt:
-        print("\nShutting down DeFi Playground.")
-        ganache.terminate()
-    except Exception:
-        msg = traceback.format_exc()
-        print(msg)
-        ganache.terminate()
-
-if __name__ == "__main__":
-    main()

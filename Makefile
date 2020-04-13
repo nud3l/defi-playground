@@ -1,2 +1,4 @@
 init:
-	pip install -r requirements.txt
+	npm install -g ganache-cli
+defi-playground:
+	python -m playground
